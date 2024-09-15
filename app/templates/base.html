@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org@1.9.3"></script>
+    <link rel="stylesheet" href="../static/styles.css">
+    <title>{{ title }}</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <!-- Logo -->
+        <a href="{{ url_for('index') }}">Home</a>
+
+        <div class="dropdown" id="about-us">
+            <a href="#">About Us</a>
+            <div class="dropdown-content">
+                <a href="{{ url_for('about_page', page='intro') }}">Introduction to Vietnam House in GCC</a>
+                <div class="dropdown-submenu">
+                    <a href="{{ url_for('about_page', page='partners') }}">Our Partners</a>
+                    <!-- Submenu for Our Partners -->
+                    <div class="dropdown-content">
+                        <a href="#">Vietnam Embassy in UAE</a>
+                        <a href="#">Vietnam Embassy in Saudi Arabia</a>
+                        <a href="#">UAE Embassy in Vietnam</a>
+                        <a href="#">Saudi Arabia Embassy in Vietnam</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dropdown" id="services">
+            <a href="#">Services</a>
+            <div class="dropdown-content">
+                <a href="{{ url_for('services', page='tradepromo') }}">Trade Promotion</a>
+                <a href="{{ url_for('services', page='consulting') }}">Consulting</a>
+                <a href="{{ url_for('services', page='mice') }}">MICE</a>
+            </div>
+        </div>
+
+        <div class="dropdown" id="b2b">
+            <a href="#">B2B</a>
+            <div class="dropdown-content">
+                <a href="{{ url_for('b2b', page='sbe') }}">Successful Business Events</a>
+                <a href="{{ url_for('b2b', page='uaebe') }}">UAE Business Events</a>
+                <a href="{{ url_for('b2b', page='sabe') }}">Saudi Arabia Business Events</a>
+            </div>
+        </div>
+
+        <div class="dropdown" id="news">
+            <a href="#">News & Events</a>
+            <div class="dropdown-content">
+                <a href="{{ url_for('news_events', page='latestnews') }}">Latest News</a>
+                <a href="{{ url_for('news_events', page='upcoming') }}">Upcoming Events</a>
+                <a href="{{ url_for('news_events', page='gallery') }}">Gallery</a>
+            </div>
+        </div>
+
+        <div class="dropdown" id="marketprofile">
+            <a href="#">Market Profile</a>
+            <div class="dropdown-content">
+                <a href="{{ url_for('market_profile', country='uae') }}">UAE</a>
+                <a href="{{ url_for('market_profile', country='saudi') }}">Saudi Arabia</a>
+                <a href="{{ url_for('market_profile', country='oman') }}">Oman</a>
+                <a href="{{ url_for('market_profile', country='qatar') }}">Qatar</a>
+                <a href="{{ url_for('market_profile', country='kuwait') }}">Kuwait</a>
+                <a href="{{ url_for('market_profile', country='bahrain') }}">Bahrain</a>
+            </div>
+        </div>
+
+        <form hx-get="/search" hx-target="#search-results" hx-swap="innerHTML">
+            <input type="text" name="query" placeholder="Tìm kiếm...">
+            <button type="submit">Tìm</button>
+        </form>
+        <div id="search-results"></div>
+
+        <div class="searchbar">
+            <!-- Search functionality can be added here -->
+        </div>
+
+        <div id="lang">
+            <!-- Language selector can be added here -->
+        </div>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <div class="footer">
+        <!-- Footer content -->
+    </div>
+</body>
+
+</html>
